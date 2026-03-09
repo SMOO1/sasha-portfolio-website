@@ -29,7 +29,7 @@ export default function Hero() {
             <h1 className="text-5xl md:text-7xl font-light text-light leading-tight mb-6">
               Muravyev
             </h1>
-            <p className="font-mono text-muted text-sm mb-8 max-w-lg leading-relaxed">
+            <p className="font-mono text-muted text-sm mb-4 max-w-lg leading-relaxed">
               Math student{" "}
               <span className="text-green-500">@uWaterloo</span>.{" "}
               I'm interested in{" "}
@@ -37,6 +37,23 @@ export default function Hero() {
               <span className="text-accent">full stack development</span>.
               I also like mac and cheese.
             </p>
+
+            {/* Favourite languages */}
+            <div className="flex items-center gap-3 mb-8">
+              <span className="font-mono text-xs text-muted">favourite languages</span>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+                className="w-5 h-5"
+                title="Python"
+              />
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java"
+                className="w-5 h-5"
+                title="Java"
+              />
+            </div>
 
             {/* Social links */}
             <div className="flex gap-4">

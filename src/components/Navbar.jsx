@@ -12,7 +12,7 @@ export default function Navbar() {
           </span>
           <div className="flex items-center gap-6">
             <a
-              href="mailto:sasha@example.com"
+              href="mailto:sashamuravyev10@gmail.com"
               className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase"
             >
               email
