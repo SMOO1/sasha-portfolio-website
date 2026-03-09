@@ -15,8 +15,8 @@ export default function Hero() {
       {/* Radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(124,106,247,0.12),transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 pt-24 pb-16 w-full">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-16">
+      <div className="max-w-5xl mx-auto px-6 pt-32 pb-16 w-full flex items-center min-h-screen">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-16 w-full">
 
           {/* Left — bio */}
           <div className="animate-slide-up flex-1">
@@ -39,8 +39,8 @@ export default function Hero() {
             </p>
 
             {/* Favourite languages */}
-            <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-xs text-muted">favourite languages</span>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="font-mono text-xs text-muted">favourite languages: </span>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                 alt="Python"
@@ -52,6 +52,17 @@ export default function Hero() {
                 alt="Java"
                 className="w-5 h-5"
                 title="Java"
+              />
+            </div>
+
+            {/* Currently learning */}
+            <div className="flex items-center gap-3 mb-8">
+              <span className="font-mono text-xs text-muted">currently learning: </span>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot"
+                className="w-5 h-5"
+                title="Spring Boot"
               />
             </div>
 
