@@ -1,10 +1,7 @@
 import React from "react";
 import ProjectCarousel from "./Projects";
 
-const SOCIALS = [
-  { label: "github", href: "https://github.com/sashamuravyev", icon: "⌥" },
-  { label: "linkedin", href: "https://linkedin.com/in/sashamuravyev", icon: "⌘" },
-];
+
 
 export default function Hero() {
   return (
@@ -39,47 +36,31 @@ export default function Hero() {
             </p>
 
             {/* Favourite languages */}
-            <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono text-xs text-muted">favourite languages: </span>
+            <div className="flex items-center gap-4 mb-4">
+              <span className="font-mono text-xs text-muted">favourite languages:</span>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                 alt="Python"
-                className="w-5 h-5"
+                className="w-8 h-8"
                 title="Python"
               />
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
                 alt="Java"
-                className="w-5 h-5"
+                className="w-8 h-8"
                 title="Java"
               />
             </div>
 
             {/* Currently learning */}
-            <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-xs text-muted">currently learning: </span>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="font-mono text-xs text-muted">currently learning:</span>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
                 alt="Spring Boot"
-                className="w-5 h-5"
+                className="w-8 h-8"
                 title="Spring Boot"
               />
-            </div>
-
-            {/* Social links */}
-            <div className="flex gap-4">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 font-mono text-xs text-muted border border-border rounded px-4 py-2 hover:text-light hover:border-muted transition-colors"
-                >
-                  <span>{s.icon}</span>
-                  {s.label}
-                </a>
-              ))}
             </div>
           </div>
 
