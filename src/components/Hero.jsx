@@ -37,7 +37,7 @@ export default function Hero() {
 
             {/* Favourite languages */}
             <div className="flex items-center gap-4 mb-4">
-              <span className="font-mono text-xs text-muted">favourite languages:</span>
+              <span className="font-mono text-xs text-muted">Favourite languages:</span>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                 alt="Python"
@@ -54,7 +54,7 @@ export default function Hero() {
 
             {/* Currently learning */}
             <div className="flex items-center gap-4 mb-8">
-              <span className="font-mono text-xs text-muted">currently learning:</span>
+              <span className="font-mono text-xs text-muted">Currently learning:</span>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
                 alt="Spring Boot"
