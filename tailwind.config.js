@@ -1,4 +1,3 @@
-
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -11,8 +10,9 @@ module.exports = {
         bg: "#0d0d0d",
         surface: "#141414",
         border: "#222222",
-        accent: "#7c6af7",
-        "accent-2": "#4ade80",
+        accent: "#7c6af7",      // ← change this hex to whatever you want
+        "accent-2": "#4ade80",  // ← or this one
+        "accent-3": "#f97316",  // ← add new ones like this, use as text-accent-3
         muted: "#555555",
         light: "#e0e0e0",
       },

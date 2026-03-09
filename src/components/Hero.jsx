@@ -1,4 +1,10 @@
 import React from "react";
+import ProjectCarousel from "./Projects";
+
+const SOCIALS = [
+  { label: "github", href: "https://github.com/sashamuravyev", icon: "⌥" },
+  { label: "linkedin", href: "https://linkedin.com/in/sashamuravyev", icon: "⌘" },
+];
 
 export default function Hero() {
   return (
@@ -10,47 +16,50 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(124,106,247,0.12),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 pt-24 pb-16 w-full">
-        <div className="animate-slide-up">
-          <p className="font-mono text-accent text-xs tracking-widest uppercase mb-4">
-            // hello world
-          </p>
-          <h1 className="text-5xl md:text-7xl font-light text-light leading-tight mb-2">
-            Sasha
-          </h1>
-          <h1 className="text-5xl md:text-7xl font-light text-light leading-tight mb-6">
-            Muravyev
-          </h1>
+        <div className="flex flex-col lg:flex-row lg:items-center gap-16">
 
-          <p className="font-mono text-muted text-sm mb-10 max-w-lg leading-relaxed">
-            Math student &amp; developer. I find beauty in proofs and elegance
-            in clean code. Somewhere between{" "}
-            <span className="text-accent-2">abstract algebra</span> and{" "}
-            <span className="text-accent">full-stack development</span>.
-          </p>
+          {/* Left — bio */}
+          <div className="animate-slide-up flex-1">
+            <p className="font-mono text-accent text-xs tracking-widest uppercase mb-4">
+              // hello world
+            </p>
+            <h1 className="text-5xl md:text-7xl font-light text-light leading-tight mb-2">
+              Sasha
+            </h1>
+            <h1 className="text-5xl md:text-7xl font-light text-light leading-tight mb-6">
+              Muravyev
+            </h1>
+            <p className="font-mono text-muted text-sm mb-8 max-w-lg leading-relaxed">
+              Math student{" "}
+              <span className="text-green-500">@uWaterloo</span>.{" "}
+              I'm interested in{" "}
+              <span className="text-">machine learning</span> and{" "}
+              <span className="text-violet-400">full stack development</span>.
+              I also like mac and cheese.
+            </p>
 
-          <div className="flex gap-4">
-            <a
-              href="#projects"
-              className="font-mono text-xs bg-accent text-white px-5 py-2.5 rounded hover:bg-accent/80 transition-colors"
-            >
-              view projects →
-            </a>
-            <a
-              href="#contact"
-              className="font-mono text-xs border border-border text-muted px-5 py-2.5 rounded hover:text-light hover:border-muted transition-colors"
-            >
-              get in touch
-            </a>
+            {/* Social links */}
+            <div className="flex gap-4">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-mono text-xs text-muted border border-border rounded px-4 py-2 hover:text-light hover:border-muted transition-colors"
+                >
+                  <span>{s.icon}</span>
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Floating math symbols */}
-        <div className="absolute right-10 top-1/3 hidden lg:block select-none pointer-events-none">
-          <div className="text-border font-mono text-7xl opacity-40 leading-none">
-            <div>∫</div>
-            <div className="text-5xl mt-2">∑</div>
-            <div className="text-4xl mt-2">∂</div>
+          {/* Right — project carousel */}
+          <div className="flex-1 max-w-md w-full">
+            <ProjectCarousel />
           </div>
+
         </div>
       </div>
     </section>
