@@ -33,8 +33,8 @@ export default function Hero() {
               Math student{" "}
               <span className="text-green-500">@uWaterloo</span>.{" "}
               I'm interested in{" "}
-              <span className="text-">machine learning</span> and{" "}
-              <span className="text-violet-400">full stack development</span>.
+              <span className="text-accent">machine learning</span> and{" "}
+              <span className="text-accent">full stack development</span>.
               I also like mac and cheese.
             </p>
 
