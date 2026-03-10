@@ -37,9 +37,10 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden font-mono text-xs text-muted hover:text-light transition-colors"
+            className="md:hidden font-mono text-sm text-muted hover:text-light transition-colors flex items-center gap-2"
           >
-            {menuOpen ? "✕" : "≡"}
+            <span className="text-lg leading-none">{menuOpen ? "✕" : "≡"}</span>
+            <span className="tracking-widest uppercase">more about me</span>
           </button>
         </div>
 
