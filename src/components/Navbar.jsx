@@ -8,7 +8,7 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <span className="font-mono text-accent font-medium tracking-tight text-sm">
-            ∑ sasha.dev
+            ∑ sasha
           </span>
           <div className="flex items-center gap-6">
             <a href="https://github.com/SMOO1" target="_blank" rel="noopener noreferrer"

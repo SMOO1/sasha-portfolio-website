@@ -4,21 +4,19 @@ const PROJECTS = [
   {
     label: "// current project",
     labelColor: "text-accent-2",
-    title: "Proof Assistant CLI",
-    desc: "A command-line tool for checking simple propositional logic proofs and generating truth tables automatically.",
-    tags: ["TypeScript", "Logic", "CLI"],
-    eq: "p → q ≡ ¬p ∨ q",
-    images: ["/images/Sasha-m-resume2026.pdf", "/images/Sasha-m-resume2026.pdf","/images/Sasha-m-resume2026.pdf"], // e.g. ["/images/proof-cli-1.png", "/images/proof-cli-2.png"]
+    title: "Receiptly",
+    desc: "An accounting mobile app to keep track of spending. Receipts are scanned using OCR.",
+    tags: ["Java", "Java Spring Boot"],
+    images: ["/images/Sasha-m-resume2026.pdf", "/images/Sasha-m-resume2026.pdf","/images/Sasha-m-resume2026.pdf"],
     link: "#",
   },
   {
     label: "// featured project",
     labelColor: "text-accent",
-    title: "Graph Theory Visualizer",
-    desc: "Interactive tool to visualize graph algorithms — BFS, DFS, Dijkstra, and more. Built to help students build intuition.",
-    tags: ["React", "D3.js", "Algorithms"],
-    eq: "G = (V, E)",
-    images: [], // e.g. ["/images/graph-viz-1.png", "/images/graph-viz-2.png"]
+    title: "LegaLens",
+    desc: "A legal contract analyzer. Using AI and RAG, predatory clauses are found and highlighted in your contracts.",
+    tags: ["React", "Python", "Gemini", "RAG"],
+    images: ["images/legalens3.png","images/legalens2.png","images/legalens4.png","images/legalens5.png","images/legalens1.png", "images/winner.png"],
     link: "#",
   },
 ];
@@ -59,7 +57,7 @@ export default function ProjectCarousel() {
         className="group bg-surface border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-all duration-300 block"
       >
         {/* Image area */}
-        <div className="relative w-full h-40 bg-bg border-b border-border overflow-hidden">
+        <div className="relative w-full h-56 bg-bg border-b border-border overflow-hidden">
           {hasImages ? (
             <>
               <img
@@ -119,9 +117,6 @@ export default function ProjectCarousel() {
             <span className="font-mono text-xs text-border group-hover:text-accent/50 transition-colors ml-2 shrink-0">
               ↗
             </span>
-          </div>
-          <div className="font-mono text-xs text-accent bg-bg border border-border rounded px-3 py-1.5 mb-4 inline-block">
-            {project.eq}
           </div>
           <p className="text-muted text-sm leading-relaxed mb-4">{project.desc}</p>
           <div className="flex flex-wrap gap-2">
