@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export default function Navbar() {
   const [showResume, setShowResume] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -10,7 +11,9 @@ export default function Navbar() {
           <span className="font-mono text-accent font-medium tracking-tight text-sm">
             ∑ sasha
           </span>
-          <div className="flex items-center gap-6">
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-6">
             <a href="https://github.com/SMOO1" target="_blank" rel="noopener noreferrer"
               className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
               github
@@ -30,7 +33,39 @@ export default function Navbar() {
               resume
             </button>
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="md:hidden font-mono text-xs text-muted hover:text-light transition-colors"
+          >
+            {menuOpen ? "✕" : "≡"}
+          </button>
         </div>
+
+        {/* Mobile dropdown */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-border bg-bg/95 backdrop-blur px-6 py-4 flex flex-col gap-4">
+            <a href="https://github.com/SMOO1" target="_blank" rel="noopener noreferrer"
+              className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
+              github
+            </a>
+            <a href="https://www.linkedin.com/in/sasha-muravyev-07b671317/" target="_blank" rel="noopener noreferrer"
+              className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
+              linkedin
+            </a>
+            <a href="mailto:sashamuravyev10@gmail.com"
+              className="font-mono text-xs text-muted hover:text-light transition-colors">
+              sashamuravyev10@gmail.com
+            </a>
+            <button
+              onClick={() => { setShowResume(true); setMenuOpen(false); }}
+              className="font-mono text-xs text-muted border border-border rounded px-4 py-1.5 hover:text-light hover:border-muted transition-colors tracking-widest uppercase w-fit"
+            >
+              resume
+            </button>
+          </div>
+        )}
       </nav>
 
       {showResume && (
