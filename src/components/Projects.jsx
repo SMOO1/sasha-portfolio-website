@@ -7,7 +7,8 @@ const PROJECTS = [
     title: "Receiptly",
     desc: "An accounting mobile app to keep track of spending. Receipts are scanned using OCR.",
     tags: ["Java", "Java Spring Boot"],
-    images: ["/images/Sasha-m-resume2026.pdf", "/images/Sasha-m-resume2026.pdf","/images/Sasha-m-resume2026.pdf"],
+    images: ["/images/image1.png", "/images/image2.png","/images/image3.png"],
+    displayMode: "side-by-side",
     link: "#",
   },
   {
@@ -59,6 +60,18 @@ export default function ProjectCarousel() {
         {/* Image area */}
         <div className="relative w-full h-56 bg-bg border-b border-border overflow-hidden">
           {hasImages ? (
+            project.displayMode === "side-by-side" ? (
+              <div className="w-full h-full flex items-center justify-center gap-2 p-2">
+                {project.images.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`${project.title} ${i + 1}`}
+                    className="h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                ))}
+              </div>
+            ) : (
             <>
               <img
                 src={project.images[imgIndex]}
@@ -102,6 +115,7 @@ export default function ProjectCarousel() {
                 </>
               )}
             </>
+            )
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="font-mono text-xs text-border">// image coming soon</span>
