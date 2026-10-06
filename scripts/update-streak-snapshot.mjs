@@ -1,10 +1,13 @@
 import fs from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 
 const url = "https://script.google.com/macros/s/AKfycbzBGAC4s_EdU2qRvVuMEaCHDT6KHFeYYqw0koWPk8dO2YLsP92jg8q8nHl4PGsK-kdH/exec?view=public-streak";
-const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
-if (!response.ok) throw new Error(`Streak feed returned ${response.status}`);
+const body = execFileSync("curl", ["--fail", "--silent", "--show-error", "--location", "--max-time", "30", url], {
+  encoding: "utf8",
+  maxBuffer: 1024 * 1024,
+});
 
-const match = /^__dailyFocusStreak\((.*)\);?\s*$/s.exec((await response.text()).trim());
+const match = /^__dailyFocusStreak\((.*)\);?\s*$/s.exec(body.trim());
 if (!match) throw new Error("Unexpected streak feed format");
 const data = JSON.parse(match[1]);
 if (!Array.isArray(data.calendar) || data.calendar.length !== 364 ||
