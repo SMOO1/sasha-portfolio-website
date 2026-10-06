@@ -1,8 +1,12 @@
 import fs from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 
-const url = "https://script.google.com/macros/s/AKfycbzBGAC4s_EdU2qRvVuMEaCHDT6KHFeYYqw0koWPk8dO2YLsP92jg8q8nHl4PGsK-kdH/exec?view=public-streak";
-const body = execFileSync("curl", ["--fail", "--silent", "--show-error", "--location", "--max-time", "30", url], {
+const url = `https://script.google.com/macros/s/AKfycbzBGAC4s_EdU2qRvVuMEaCHDT6KHFeYYqw0koWPk8dO2YLsP92jg8q8nHl4PGsK-kdH/exec?view=public-streak&v=${Date.now()}`;
+const body = execFileSync("curl", [
+  "--fail", "--silent", "--show-error", "--location",
+  "--connect-timeout", "10", "--max-time", "30",
+  "--retry", "4", "--retry-all-errors", "--retry-delay", "3", url,
+], {
   encoding: "utf8",
   maxBuffer: 1024 * 1024,
 });
