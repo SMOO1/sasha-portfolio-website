@@ -14,6 +14,10 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-6">
+            <a href="#streak"
+              className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
+              streak
+            </a>
             <a href="https://github.com/SMOO1" target="_blank" rel="noopener noreferrer"
               className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
               github
@@ -47,6 +51,10 @@ export default function Navbar() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div className="md:hidden border-t border-border bg-bg/95 backdrop-blur px-6 py-4 flex flex-col gap-4">
+            <a href="#streak" onClick={() => setMenuOpen(false)}
+              className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
+              streak
+            </a>
             <a href="https://github.com/SMOO1" target="_blank" rel="noopener noreferrer"
               className="font-mono text-xs text-muted hover:text-light transition-colors tracking-widest uppercase">
               github
