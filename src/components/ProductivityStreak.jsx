@@ -1,114 +1,64 @@
 import React, { useEffect, useState } from "react";
 import "./ProductivityStreak.css";
+import snapshot from "../streak-snapshot.json";
 
-const STREAK_URL = "https://script.google.com/macros/s/AKfycbzBGAC4s_EdU2qRvVuMEaCHDT6KHFeYYqw0koWPk8dO2YLsP92jg8q8nHl4PGsK-kdH/exec";
-const CACHE_KEY = "daily-focus-public-streak";
-const CACHE_MAX_AGE = 48 * 60 * 60 * 1000;
+const SNAPSHOT_URL = "https://raw.githubusercontent.com/SMOO1/sasha-portfolio-website/main/src/streak-snapshot.json";
 
 function validStreak(data) {
   return data && Array.isArray(data.calendar) && data.calendar.length === 364 &&
     typeof data.current === "number" && typeof data.best === "number";
 }
 
-function readCachedStreak() {
-  try {
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-    return cached && Date.now() - cached.savedAt < CACHE_MAX_AGE && validStreak(cached.data)
-      ? cached.data : null;
-  } catch {
-    return null;
-  }
-}
-
-function loadScriptStreak(onSuccess, onError) {
-  const script = document.createElement("script");
-  let finished = false;
-  const finish = (data) => {
-    if (finished) return;
-    finished = true;
-    clearTimeout(timeout);
-    script.remove();
-    delete window.__dailyFocusStreak;
-    if (validStreak(data)) {
-      onSuccess(data);
-    } else {
-      onError();
-    }
-  };
-
-  window.__dailyFocusStreak = finish;
-  script.src = `${STREAK_URL}?view=public-streak&v=${Date.now()}`;
-  script.async = true;
-  script.onerror = () => finish(null);
-  const timeout = setTimeout(() => finish(null), 12000);
-  document.head.appendChild(script);
-  return () => {
-    if (!finished) {
-      finished = true;
-      clearTimeout(timeout);
-      script.remove();
-      delete window.__dailyFocusStreak;
-    }
-  };
-}
-
 function loadStreak(onSuccess, onError) {
   const controller = new AbortController();
-  let cancelScript = () => {};
   let cancelled = false;
-  const timeout = setTimeout(() => controller.abort(), 10000);
-  fetch("/api/streak", { signal: controller.signal })
+  const timeout = setTimeout(() => controller.abort(), 4000);
+  fetch(`${SNAPSHOT_URL}?v=${Date.now()}`, { signal: controller.signal })
     .then((response) => {
-      if (!response.ok) throw new Error("Streak request failed");
+      if (!response.ok) throw new Error("Snapshot unavailable");
       return response.json();
     })
-    .then((data) => {
-      if (!validStreak(data)) throw new Error("Invalid streak data");
-      if (!cancelled) onSuccess(data);
+    .then((latest) => {
+      const updatedAt = Date.parse(latest.updatedAt);
+      if (!validStreak(latest.data) || !Number.isFinite(updatedAt)) throw new Error("Invalid snapshot");
+      if (!cancelled) onSuccess(latest.data, updatedAt);
     })
     .catch(() => {
-      if (!cancelled) cancelScript = loadScriptStreak(onSuccess, onError);
+      if (!cancelled) onError();
     })
     .finally(() => clearTimeout(timeout));
-  return () => { cancelled = true; clearTimeout(timeout); controller.abort(); cancelScript(); };
+  return () => { cancelled = true; clearTimeout(timeout); controller.abort(); };
 }
 
 export default function ProductivityStreak() {
-  const [streak, setStreak] = useState(readCachedStreak);
-  const [status, setStatus] = useState("loading");
+  const [{ streak, updatedAt }, setStreak] = useState(() => ({
+    streak: snapshot.data,
+    updatedAt: Date.parse(snapshot.updatedAt),
+  }));
+  const [status, setStatus] = useState("ready");
 
   useEffect(() => {
     let cancel = () => {};
-    let retryTimer;
-    let attempts = 0;
     let active = true;
-    const attempt = () => {
+    const refresh = () => {
+      cancel();
       cancel = loadStreak(
-        (data) => {
+        (data, remoteUpdatedAt) => {
           if (!active) return;
-          setStreak(data);
+          setStreak((current) => remoteUpdatedAt > current.updatedAt
+            ? { streak: data, updatedAt: remoteUpdatedAt }
+            : current);
           setStatus("ready");
-          try { localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), data })); } catch {}
         },
         () => {
           if (!active) return;
-          if (++attempts < 3) {
-            retryTimer = setTimeout(attempt, attempts * 2000);
-          } else {
-            setStatus("unavailable");
-          }
+          setStatus("offline");
         }
       );
     };
-    const refresh = () => {
-      cancel();
-      clearTimeout(retryTimer);
-      attempts = 0;
-      attempt();
-    };
     refresh();
     const interval = setInterval(refresh, 30 * 60 * 1000);
-    return () => { active = false; clearInterval(interval); clearTimeout(retryTimer); cancel(); };
+    return () => { active = false; clearInterval(interval); cancel(); };
   }, []);
 
   const months = streak?.calendar.filter((day, index) => index % 7 === 0).map((day, index, weeks) => {
@@ -152,7 +102,8 @@ export default function ProductivityStreak() {
               </div>
             </div>
             <p className="font-mono text-muted text-xs mt-2">{completed} complete days in the last year</p>
-            {status === "unavailable" && <p className="font-mono text-muted text-xs mt-2" role="status">Showing the last loaded streak.</p>}
+            {status === "offline" && Date.now() - updatedAt > 24 * 60 * 60 * 1000 &&
+              <p className="font-mono text-muted text-xs mt-2" role="status">Showing the last synced streak from {new Date(updatedAt).toLocaleDateString()}.</p>}
           </>
         ) : (
           <p className="font-mono text-muted text-xs mt-8" role="status">
