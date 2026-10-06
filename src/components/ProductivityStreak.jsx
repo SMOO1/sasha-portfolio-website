@@ -67,6 +67,7 @@ export default function ProductivityStreak() {
     return label !== previous ? label : "";
   });
   const completed = streak?.calendar.filter((day) => day.completed).length || 0;
+  const firstCompletedDate = streak?.calendar.find((day) => day.completed)?.date;
 
   return (
     <section id="streak" className="streak-section">
@@ -91,17 +92,20 @@ export default function ProductivityStreak() {
               <div className="streak-months" aria-hidden="true">
                 {months.map((month, index) => <span key={index}>{month}</span>)}
               </div>
-              <div className="streak-grid" role="img" aria-label={`${completed} completed days in the past 52 weeks`}>
+              <div className="streak-grid" role="img" aria-label={`${completed} completed days in the past 52 weeks${firstCompletedDate ? `. Started tracking goals on ${firstCompletedDate}` : ""}`}>
                 {streak.calendar.map((day) => (
                   <span
                     key={day.date}
-                    className={`streak-square${day.completed ? " is-complete" : ""}${day.date > streak.today ? " is-future" : ""}`}
-                    title={`${day.date}: ${day.completed ? "all goals complete" : "not complete"}`}
+                    className={`streak-square${day.completed ? " is-complete" : ""}${day.date > streak.today ? " is-future" : ""}${day.date === firstCompletedDate ? " is-first-complete" : ""}`}
+                    title={`${day.date}: ${day.date === firstCompletedDate ? "started tracking goals; " : ""}${day.completed ? "all goals complete" : "not complete"}`}
                   />
                 ))}
               </div>
             </div>
-            <p className="font-mono text-muted text-xs mt-2">{completed} complete days in the last year</p>
+            <div className="streak-footer font-mono text-muted text-xs mt-2">
+              <span>{completed} complete days <span className="streak-year-label">in the last year</span></span>
+              {firstCompletedDate && <span className="streak-start-key"><span className="streak-start-swatch" aria-hidden="true" />Started tracking goals</span>}
+            </div>
             {status === "offline" && Date.now() - updatedAt > 24 * 60 * 60 * 1000 &&
               <p className="font-mono text-muted text-xs mt-2" role="status">Showing the last synced streak from {new Date(updatedAt).toLocaleDateString()}.</p>}
           </>
