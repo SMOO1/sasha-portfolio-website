@@ -58,7 +58,7 @@ export default function ProjectCarousel() {
         className="group bg-surface border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-all duration-300 block"
       >
         {/* Image area */}
-        <div className="relative w-full h-56 bg-bg border-b border-border overflow-hidden">
+        <div className="project-image relative w-full bg-bg border-b border-border overflow-hidden">
           {hasImages ? (
             project.displayMode === "side-by-side" ? (
               <div className="w-full h-full flex items-center justify-center gap-2 p-2">
@@ -123,8 +123,8 @@ export default function ProjectCarousel() {
           )}
         </div>
 
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-4">
+        <div className="project-copy p-4">
+          <div className="flex items-start justify-between mb-2">
             <h3 className="text-light font-medium group-hover:text-accent transition-colors">
               {project.title}
             </h3>
@@ -132,7 +132,7 @@ export default function ProjectCarousel() {
               ↗
             </span>
           </div>
-          <p className="text-muted text-sm leading-relaxed mb-4">{project.desc}</p>
+          <p className="text-muted text-sm leading-relaxed mb-3">{project.desc}</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span

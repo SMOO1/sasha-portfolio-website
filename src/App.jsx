@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import ProductivityStreak from "./components/ProductivityStreak";
 
 export default function App() {
   return (
-    <div className="bg-bg min-h-screen">
+    <div className="portfolio-page bg-bg min-h-screen">
       <Navbar />
-      <Hero />
-      <ProductivityStreak />
+      <main className="portfolio-content max-w-5xl mx-auto px-6">
+        <Hero />
+      </main>
     </div>
   );
 }
