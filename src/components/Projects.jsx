@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const PROJECTS = [
   {
-    label: "// current project",
+    label: "// CURRENT PROJECT",
     labelColor: "text-accent-2",
     title: "Receiptly",
     desc: "An accounting mobile app to keep track of spending. Receipts are scanned using OCR.",
@@ -12,7 +12,7 @@ const PROJECTS = [
     link: "#",
   },
   {
-    label: "// featured project",
+    label: "// FEATURED PROJECT",
     labelColor: "text-accent",
     title: "LegaLens",
     desc: "A legal contract analyzer. Using AI and RAG, predatory clauses are found and highlighted in your contracts.",

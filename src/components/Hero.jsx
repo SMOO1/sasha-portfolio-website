@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="about"
-      className="hero-section relative flex items-center math-grid overflow-hidden"
+      className="hero-section relative flex items-center overflow-hidden"
     >
       {/* Radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(124,106,247,0.12),transparent_70%)] pointer-events-none" />
