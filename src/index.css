@@ -31,6 +31,10 @@ body {
   border-radius: 3px;
 }
 
+.portfolio-page {
+  background: radial-gradient(ellipse at 30% 50%, rgba(124, 106, 247, 0.16), rgba(124, 106, 247, 0.08) 50%, transparent 100%), #0d0d0d;
+}
+
 .portfolio-content {
   min-height: 100dvh;
   padding-top: 4.75rem;
@@ -53,7 +57,7 @@ body {
 .hero-project { grid-area: project; justify-self: end; }
 .streak-section { grid-area: streak; width: 100%; }
 .hero-bio h1 { font-size: clamp(2.5rem, 3.4vw, 3rem); }
-.hero-bio > p:nth-of-type(2) { font-size: 0.75rem; }
+.hero-bio > p:first-of-type { font-size: 0.75rem; }
 .hero-bio img { width: 1.6rem; height: 1.6rem; }
 .project-image { height: clamp(7rem, 16vh, 10rem); }
 .project-copy { padding: 0.75rem; }
@@ -84,7 +88,7 @@ body {
   .portfolio-content { padding-top: 3.5rem; padding-bottom: 0.5rem; }
   .hero-grid { row-gap: 0.4rem; }
   .hero-bio h1 { font-size: 1.75rem; line-height: 1.1; margin-bottom: 0.2rem; }
-  .hero-bio > p:nth-of-type(2) { font-size: 0.68rem; line-height: 1.35; }
+  .hero-bio > p:first-of-type { font-size: 0.68rem; line-height: 1.35; }
   .hero-bio > div { margin-bottom: 0.25rem; }
   .hero-bio img { width: 1.1rem; height: 1.1rem; }
   .hero-project a { display: flex; }

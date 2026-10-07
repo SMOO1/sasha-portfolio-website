@@ -8,19 +8,13 @@ export default function Hero() {
   return (
     <section
       id="about"
-      className="hero-section relative flex items-center overflow-hidden"
+      className="hero-section flex items-center"
     >
-      {/* Radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(124,106,247,0.12),transparent_70%)] pointer-events-none" />
-
-      <div className="hero-inner relative w-full flex items-center">
+      <div className="hero-inner w-full flex items-center">
         <div className="hero-grid w-full">
 
           {/* Left — bio */}
           <div className="hero-bio animate-slide-up flex-1">
-            <p className="font-mono text-accent text-xs tracking-widest uppercase mb-3">
-              // hello world
-            </p>
             <h1 className="text-5xl font-light text-light leading-tight mb-1">
               Sasha
             </h1>
